@@ -11,9 +11,10 @@ Problemas com push
 <h3>
 <strong>Criar nova branch</strong>
 </h3>
- <span>*  git checkout -b breno --track</span>
+ <span>*  git checkout -b <branch> --track</span>
  <br>
  <span>* git branch --list </span>
+ <br>
  <span>* <strong> navegar entre branch: </strong> git checkout <branch> </span>
  
  
