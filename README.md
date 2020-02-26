@@ -17,5 +17,9 @@ Problemas com push
  <br>
  <span>* <strong> navegar entre branch: </strong> git checkout 'branch' </span>
  
+ <h2><strong> Erro comum </strong> </h2>
+ <br>
+ <p color="#7159c1"> error: failed to push some refs to 'https://github.com/brenogcota/JENITUR.git' </p>
+ 
  
  
