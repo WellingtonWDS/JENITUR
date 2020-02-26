@@ -14,5 +14,7 @@ Problemas com push
  <span>*  git checkout -b breno --track</span>
  <br>
  <span>* git branch --list </span>
+ <span>* <strong> navegar entre branch: </strong> git checkout <branch> </span>
+ 
  
  
