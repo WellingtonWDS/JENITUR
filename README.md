@@ -1,6 +1,4 @@
-
-
-<<<<<<< HEAD
+﻿
 <h3>
 Problemas com push
 </h3>
@@ -19,10 +17,6 @@ Problemas com push
  <br>
  <span>* <strong> navegar entre branch: </strong> git checkout 'nome branch' </span>
  
- 
- 
-=======
->>>>>>> da1534ad8aaf2c70b0d814e20d68cfbfa721137f
  
  
  
