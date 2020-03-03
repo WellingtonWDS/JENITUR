@@ -109,7 +109,7 @@ class TripController extends Controller
         
 
         $trip = $this->tripModel;
-        $trip->ORIGEM = 'Belo-Horizonte';
+        $trip->ORIGEM = 'Berilo';
         $trip->DESTINO = 'São Paulo';
         $trip->DATA = '2020-03-01';
         $trip->HORARIO = '09:00:00';
