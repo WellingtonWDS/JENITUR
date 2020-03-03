@@ -8,4 +8,5 @@ class Trip extends Model
 {
     //
     protected $table = 'viagem';
+    public $timestamps = false;
 }

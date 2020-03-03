@@ -33,7 +33,7 @@ class TripController extends Controller
      */
     public function create()
     {
-        return "cria viagem";
+        return "view viagem";
     }
 
     /**
@@ -57,6 +57,14 @@ class TripController extends Controller
     public function show($id)
     {
         //
+        $trip = $this->tripModel;
+        $res = $trip::where('codviagem', $id)->first();
+
+        if(!$res)
+          return "viagem não encontrada!";
+        else
+          return $res;
+
     }
 
     /**
@@ -99,11 +107,12 @@ class TripController extends Controller
     public function teste()
     {
         
+        /*
         $trip = $this->tripModel;
-        $trip->ORIGEM = 'Jenipapo';
+        $trip->ORIGEM = 'Belo-Horizonte';
         $trip->DESTINO = 'São Paulo';
-        $trip->DATA = '2020-07-01';
-        $trip->HORARIO = '00:00:00';
+        $trip->DATA = '2020-03-01';
+        $trip->HORARIO = '09:00:00';
         $trip->STATUS = 1;
         $trip->PLACAVEICULO = 'pwk-781';
 
@@ -115,6 +124,14 @@ class TripController extends Controller
         if($res)
           return 'ok';
         else
-          return 'erro';
+          return 'erro'; 
+
+        */
+
+       
+
+        
+
+        
     }
 }
