@@ -107,7 +107,7 @@ class TripController extends Controller
     public function teste()
     {
         
-        /*
+
         $trip = $this->tripModel;
         $trip->ORIGEM = 'Belo-Horizonte';
         $trip->DESTINO = 'São Paulo';
@@ -125,12 +125,6 @@ class TripController extends Controller
           return 'ok';
         else
           return 'erro'; 
-
-        */
-
-       
-
-        
 
         
     }
