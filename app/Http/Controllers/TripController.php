@@ -44,7 +44,11 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+       $name = $request->input('name', 'Sally');
+    
+
+       return $name;
 
     }
 
@@ -57,6 +61,8 @@ class TripController extends Controller
     public function show($id)
     {
         //
+
+       
         $trip = $this->tripModel;
         $res = $trip::where('codviagem', $id)->first();
 
@@ -88,6 +94,7 @@ class TripController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
@@ -104,28 +111,11 @@ class TripController extends Controller
     //Teste de cadastro de viagem
     //OBs alteração nas tabelas add created_at and updated_at
 
-    public function teste()
+    public function teste($id)
     {
-        
-
-        $trip = $this->tripModel;
-        $trip->ORIGEM = 'Berilo';
-        $trip->DESTINO = 'São Paulo';
-        $trip->DATA = '2020-03-01';
-        $trip->HORARIO = '09:00:00';
-        $trip->STATUS = 1;
-        $trip->PLACAVEICULO = 'pwk-781';
-
-        echo $trip->status;
-        echo $trip->origem;
-        
-        $res = $trip->save();
-
-        if($res)
-          return 'ok';
-        else
-          return 'erro'; 
-
+        $res = var_dump($id);
+        return $res;
+       
         
     }
 }

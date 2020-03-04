@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('viagem/teste', 'TripController@teste');
+Route::get('viagem/show/{id}', 'TripController@show');
+Route::post('viagem/store', 'TripController@store');
+        
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// utilizando resource para simplicar as rotas.
-Route::resource('viagem', 'TripController');
+/*utilizando resource para simplicar as rotas.
+Route::resource('viagem', 'TripController'); */
 /*
 
     Route::get('/viagem/cadastrar', 'TripController@create')->name('viagem.create');
