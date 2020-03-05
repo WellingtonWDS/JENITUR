@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use  App\Models\Trip;
+Use App\Format;
 
 class TripController extends Controller
 {
 
     private $tripModel;
+    private $format;
 
-    public function __construct(Trip $trip)
+    public function __construct(Trip $trip, Format $format)
     {
         $this->tripModel = $trip;
+        $this->format = $format;
     }
 
 
@@ -62,9 +65,14 @@ class TripController extends Controller
     {
         //
 
-       
+        $format = $this->format;
         $trip = $this->tripModel;
         $res = $trip::where('codviagem', $id)->first();
+
+        $date = $format->formatDate($res->DATA);
+        $hour = $format->formatHour($res->HORARIO);
+        $res->DATA = $date;
+        $res->HORARIO = $hour;
 
         if(!$res)
           return "viagem não encontrada!";
@@ -118,4 +126,6 @@ class TripController extends Controller
        
         
     }
+
+    
 }
