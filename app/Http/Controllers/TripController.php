@@ -5,17 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  App\Models\Trip;
 Use App\Format;
+Use App\Validate;
 
 class TripController extends Controller
 {
 
     private $tripModel;
     private $format;
+    private $validate;
 
-    public function __construct(Trip $trip, Format $format)
+    public function __construct(Trip $trip, Format $format, Validate $validate)
     {
         $this->tripModel = $trip;
         $this->format = $format;
+        $this->validate = $validate;
     }
 
 
@@ -47,11 +50,25 @@ class TripController extends Controller
      */
     public function store(Request $request)
     {
+    
+        $trip = $this->trip;
+        $trip->ORIGEM = $request->origem;
+        $trip->DESTINO = $request->destino;
+        $trip->DATA = $request->data;
+        $trip->HORARIO = $request->horario;
+        $trip->STATUS = $request->status;
+
+        $valBoard = $this->validate->validateBoard($request->placa);
+        if ($valBoard == 'ok'){
+            $trip->PLACAVEICULO = $request->placa;
+        }
         
-       $name = $request->input('name', 'Sally');
+
+        $trip->save();
+
     
 
-       return $name;
+       return 'viagem criada!';
 
     }
 
@@ -69,15 +86,16 @@ class TripController extends Controller
         $trip = $this->tripModel;
         $res = $trip::where('codviagem', $id)->first();
 
-        $date = $format->formatDate($res->DATA);
-        $hour = $format->formatHour($res->HORARIO);
-        $res->DATA = $date;
-        $res->HORARIO = $hour;
+        if($res) {
+            $date = $format->formatDate($res->DATA);
+            $hour = $format->formatHour($res->HORARIO);
+            $res->DATA = $date;
+            $res->HORARIO = $hour;
 
-        if(!$res)
-          return "viagem não encontrada!";
+            return $res;
+        }   
         else
-          return $res;
+          return "viagem não encontrada!";
 
     }
 
@@ -119,10 +137,19 @@ class TripController extends Controller
     //Teste de cadastro de viagem
     //OBs alteração nas tabelas add created_at and updated_at
 
-    public function teste($id)
+    public function teste($string)
     {
-        $res = var_dump($id);
-        return $res;
+       
+        $validate = new Validate();
+
+        $valBoard = $this->validate->validateBoard($string);
+
+        if ($valBoard){
+            return $valBoard;
+        }
+
+       
+       
        
         
     }
