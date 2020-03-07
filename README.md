@@ -1,6 +1,6 @@
-﻿
+
 <h3>
-Problemas com push
+WELL
 </h3>
  <span>* <strong> git pull -r upstream master </strong></span>
  <br><span>* git push -u origin master <strong> --force </strong></span><br>
@@ -16,7 +16,7 @@ Problemas com push
  <span>* git branch --list </span>
  <br>
  <span>* <strong> navegar entre branch: </strong> git checkout 'nome branch' </span>
- 
+
  
  
  
