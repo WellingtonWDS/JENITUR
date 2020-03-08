@@ -13,7 +13,7 @@
 
 Route::get('viagem/show/{id}', 'TripController@show');
 Route::post('viagem/store', 'TripController@store');
-Route::get('viagem/teste/{string}', 'TripController@teste');
+Route::get('viagem/teste/{id}', 'TripController@teste');
         
 
 

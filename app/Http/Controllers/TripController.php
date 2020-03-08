@@ -83,16 +83,16 @@ class TripController extends Controller
         //
 
         $format = $this->format;
-        $trip = $this->tripModel;
-        $res = $trip::where('codviagem', $id)->first();
+        $trip = $this->tripModel->find($id);
+        
 
-        if($res) {
-            $date = $format->formatDate($res->DATA);
-            $hour = $format->formatHour($res->HORARIO);
-            $res->DATA = $date;
-            $res->HORARIO = $hour;
+        if($trip) {
+            $date = $format->formatDate($trip->DATA);
+            $hour = $format->formatHour($trip->HORARIO);
+            $trip->DATA = $date;
+            $trip->HORARIO = $hour;
 
-            return $res;
+            return $trip;
         }   
         else
           return "viagem não encontrada!";
@@ -120,6 +120,20 @@ class TripController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $trip = $this->tripModel->find($id);
+
+        $update = $trip->update([
+            'ORIGEM' => $request->origem,
+            'DESTINO' => $request->destino,
+            'DATA' => $request->data,
+            'HORARIO' => $request->horario,
+        ]);
+       
+        if($update)
+            return 'viagem alterada';
+        else 
+            return 'erro';
+        
 
     }
 
@@ -137,20 +151,22 @@ class TripController extends Controller
     //Teste de cadastro de viagem
     //OBs alteração nas tabelas add created_at and updated_at
 
-    public function teste($string)
+    public function teste($id)
     {
-       
-        $validate = new Validate();
+        
+        $trip = $this->tripModel->find($id);
 
-        $valBoard = $this->validate->validateBoard($string);
-
-        if ($valBoard){
-            return $valBoard;
-        }
-
+        $update = $trip->update([
+            'ORIGEM' => 'Teofilo Otoni',
+            'DESTINO' => 'Porto de galinhas',
+            'DATA' => '2020-04-01',
+            'HORARIO' => '08:30:00',
+        ]);
        
-       
-       
+        if($update)
+            return 'viagem alterada';
+        else 
+            return 'erro';
         
     }
 
