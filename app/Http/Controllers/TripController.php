@@ -59,7 +59,7 @@ class TripController extends Controller
        $valBoard = $this->validate->validateBoard($request->placa);
        if ($valBoard == 'ok')
        {
-            $trip->PLACAVEICULO = $trip->PLACAVEICULO;
+            $trip->PLACAVEICULO = $request->placa;
        }
        else
             return 'placa invalida';
