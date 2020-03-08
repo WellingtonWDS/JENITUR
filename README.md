@@ -1,7 +1,3 @@
-
-<h3>
-WELL
-</h3>
  <span>* <strong> git pull -r upstream master </strong></span>
  <br><span>* git push -u origin master <strong> --force </strong></span><br>
  <h4><strong> Erro comum </strong> </h4>
@@ -16,7 +12,3 @@ WELL
  <span>* git branch --list </span>
  <br>
  <span>* <strong> navegar entre branch: </strong> git checkout 'nome branch' </span>
-
- 
- 
- 
