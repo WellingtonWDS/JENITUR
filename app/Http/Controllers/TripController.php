@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -51,24 +50,22 @@ class TripController extends Controller
     public function store(Request $request)
     {
     
-        $trip = $this->trip;
-        $trip->ORIGEM = $request->origem;
-        $trip->DESTINO = $request->destino;
-        $trip->DATA = $request->data;
-        $trip->HORARIO = $request->horario;
-        $trip->STATUS = $request->status;
+       $trip = $this->tripModel;
+       $trip->ORIGEM = $request->origem;
+       $trip->DESTINO = $request->destino;
+       $trip->DATA = $request->data;
+       $trip->HORARIO =  $request->horario;
 
-        $valBoard = $this->validate->validateBoard($request->placa);
-        if ($valBoard == 'ok'){
-            $trip->PLACAVEICULO = $request->placa;
-        }
-        
-
-        $trip->save();
-
-    
-
-       return 'viagem criada!';
+       $valBoard = $this->validate->validateBoard($request->placa);
+       if ($valBoard == 'ok')
+       {
+            $trip->PLACAVEICULO = $trip->PLACAVEICULO;
+       }
+       else
+            return 'placa invalida';
+       
+      $trip->save();
+      return 'viagem criada!';
 
     }
 
@@ -78,24 +75,36 @@ class TripController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = 0)
     {
         //
 
-        $format = $this->format;
-        $trip = $this->tripModel->find($id);
-        
+        $format = $this->format;     
 
-        if($trip) {
-            $date = $format->formatDate($trip->DATA);
-            $hour = $format->formatHour($trip->HORARIO);
-            $trip->DATA = $date;
-            $trip->HORARIO = $hour;
-
+        if($id == 0)
+        {
+            $trip = $this->tripModel::all();
             return $trip;
-        }   
-        else
-          return "viagem não encontrada!";
+        }
+
+        else {
+            
+            $trip = $this->tripModel->find($id);
+    
+            if($trip) {
+                $date = $format->formatDate($trip->DATA);
+                $hour = $format->formatHour($trip->HORARIO);
+                $trip->DATA = $date;
+                $trip->HORARIO = $hour;
+    
+                return $trip;
+            }   
+            else
+              return "viagem não encontrada!";
+
+        }
+
+       
 
     }
 
@@ -122,18 +131,19 @@ class TripController extends Controller
         //
         $trip = $this->tripModel->find($id);
 
-        $update = $trip->update([
-            'ORIGEM' => $request->origem,
-            'DESTINO' => $request->destino,
-            'DATA' => $request->data,
-            'HORARIO' => $request->horario,
-        ]);
-       
-        if($update)
+        if($trip)
+        {
+            $update = $trip->update([
+                'ORIGEM' => $request->origem,
+                'DESTINO' => $request->destino,
+                'DATA' => $request->data,
+                'HORARIO' => $request->horario,
+            ]);
+           
             return 'viagem alterada';
+        } 
         else 
-            return 'erro';
-        
+            return 'erro';    
 
     }
 
@@ -158,19 +168,29 @@ class TripController extends Controller
     }
 
     
-    public function teste($id)
+    public function teste()
     {
         
-        $trip = $this->tripModel->find($id);
-        
-        if($trip)
-        {
-          $delete = $trip->delete();
-          return 'viagem deletada';
+        $trip = $this->tripModel;
+        $trip->ORIGEM = 'Jenipapo, MG';
+        $trip->DESTINO = 'Belo Horizonte, SP';
+        $trip->DATA = '2020-03-05';
+        $trip->HORARIO = '05:00:00';
+        $trip->PLACAVEICULO = 'PZU-7682';
+
+        $valBoard = $this->validate->validateBoard($trip->PLACAVEICULO);
+        if ($valBoard == 'ok'){
+            $trip->PLACAVEICULO = $trip->PLACAVEICULO;
         }
-        else 
-            return 'viagem não encontrada';
+        else
+            return 'placa invalida';
         
+
+        $trip->save();
+
+    
+
+       return 'viagem criada!';
     }
 
     

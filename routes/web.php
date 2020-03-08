@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('viagem/show/{id}', 'TripController@show');
+Route::get('viagem/show/{id?}', 'TripController@show');
 Route::post('viagem/store', 'TripController@store');
-Route::get('viagem/teste/{id}', 'TripController@teste');
+Route::get('viagem/teste', 'TripController@teste');
+Route::get('viagem/delete/{id}', 'TripController@destroy');
         
 
 

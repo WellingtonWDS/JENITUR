@@ -1,7 +1,6 @@
 <?php
 Namespace App;
 
-
 use Carbon\Carbon;
 
 class Format {
