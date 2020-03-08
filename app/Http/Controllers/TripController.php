@@ -146,27 +146,30 @@ class TripController extends Controller
     public function destroy($id)
     {
         //
+        $trip = $this->tripModel->find($id);
+        
+        if($trip)
+        {
+          $delete = $trip->delete();
+          return 'viagem deletada';
+        }
+        else 
+            return 'viagem não encontrada';
     }
 
-    //Teste de cadastro de viagem
-    //OBs alteração nas tabelas add created_at and updated_at
-
+    
     public function teste($id)
     {
         
         $trip = $this->tripModel->find($id);
-
-        $update = $trip->update([
-            'ORIGEM' => 'Teofilo Otoni',
-            'DESTINO' => 'Porto de galinhas',
-            'DATA' => '2020-04-01',
-            'HORARIO' => '08:30:00',
-        ]);
-       
-        if($update)
-            return 'viagem alterada';
+        
+        if($trip)
+        {
+          $delete = $trip->delete();
+          return 'viagem deletada';
+        }
         else 
-            return 'erro';
+            return 'viagem não encontrada';
         
     }
 
